@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fardin Islam - Official Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #6f00ff; /* Deep Violet */
+            --color-secondary: #ac3878; /* Vibrant Pink/Magenta */
+            --color-accent: #00bcd4; /* Cyan for subtle accents */
+            --color-text-dark: #2c3e50; /* Dark Charcoal */
+            --color-bg-light: #fdfcfb; /* Off-white / Cream */
+            --shadow-light: rgba(0, 0, 0, 0.05);
+            --shadow-medium: rgba(0, 0, 0, 0.12);
+            --shadow-heavy: rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--color-bg-light);
+            color: var(--color-text-dark);
+            line-height: 1.8; /* Increased line height for better readability */
+            scroll-behavior: smooth;
+            overflow-x: hidden; /* Prevent horizontal scroll on animations */
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--color-text-dark);
+        }
+        .container {
+            max-width: 1280px; /* Slightly wider container */
+            margin: 0 auto;
+            padding: 2.5rem;
+        }
+        .card {
+            background-color: #ffffff;
+            border-radius: 2rem; /* Even more rounded corners */
+            box-shadow: 0 10px 30px var(--shadow-light), 0 30px 60px var(--shadow-medium); /* Deeper, multi-layered shadow */
+            padding: 4rem; /* More generous padding */
+            margin-bottom: 4rem; /* Increased margin */
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden; /* Ensures inner elements don't overflow rounded corners */
+        }
+        .card:hover {
+            transform: translateY(-15px) scale(1.01); /* More pronounced lift and slight scale */
+            box-shadow: 0 20px 50px var(--shadow-medium), 0 50px 100px var(--shadow-heavy); /* Stronger hover shadow */
+        }
+        .profile-img {
+            width: 250px; /* Larger profile image */
+            height: 250px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 10px solid var(--color-primary); /* Vibrant border */
+            box-shadow: 0 0 0 15px rgba(111, 0, 255, 0.3), 0 0 0 30px rgba(111, 0, 255, 0.1); /* Layered shadow */
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.8s ease-in-out;
+        }
+        .profile-img:hover {
+            transform: scale(1.15) rotate(7deg); /* More dramatic rotation and scale */
+            box-shadow: 0 0 0 15px rgba(111, 0, 255, 0.5), 0 0 0 30px rgba(111, 0, 255, 0.2);
+        }
+        .social-icon {
+            color: var(--color-primary);
+            transition: color 0.4s ease-in-out, transform 0.4s ease-in-out;
+            font-weight: 500;
+            font-size: 2.8rem; /* Larger icons */
+        }
+        .social-icon:hover {
+            color: var(--color-secondary);
+            transform: translateY(-8px) scale(1.2); /* More pronounced lift and scale */
+        }
+        .btn-primary {
+            background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            padding: 1rem 2.8rem; /* Larger padding */
+            border-radius: 1.5rem; /* More rounded */
+            transition: all 0.4s ease-in-out;
+            font-weight: 700;
+            letter-spacing: 0.1em; /* Increased letter spacing */
+            text-transform: uppercase; /* Uppercase text */
+            box-shadow: 0 15px 30px rgba(111, 0, 255, 0.4);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(111, 0, 255, 0.6);
+        }
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .section-heading {
+            font-size: 4rem; /* Even larger heading */
+            text-align: center;
+            margin-bottom: 5rem; /* More space below heading */
+            color: var(--color-text-dark);
+            position: relative;
+            padding-bottom: 1.5rem; /* Increased padding */
+            line-height: 1.2;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.05); /* Subtle text shadow */
+        }
+        .section-heading::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            transform: translateX(-50%);
+            width: 150px; /* Wider, more prominent underline */
+            height: 8px; /* Thicker underline */
+            background: linear-gradient(90deg, var(--color-secondary), var(--color-primary)); /* Gradient underline */
+            border-radius: 4px;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.5rem; /* Rounded corners for gallery items */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+        }
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+        .gallery-img {
+            width: 100%;
+            height: 320px; /* Taller fixed height for consistency */
+            object-fit: cover;
+            transition: filter 0.4s ease-in-out, transform 0.4s ease-in-out;
+        }
+        .gallery-item:hover .gallery-img {
+            filter: brightness(0.7) blur(1px); /* Darker and slightly blurred on hover */
+            transform: scale(1.1);
+        }
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%); /* Gradient overlay */
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        .gallery-caption {
+            color: white;
+            font-size: 1.3rem;
+            font-weight: 600;
+            transform: translateY(20px);
+            transition: transform 0.4s ease-in-out;
+        }
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        /* Hero section background animation */
+        .hero-gradient-animated {
+            background: linear-gradient(45deg, #6f00ff, #e6007e, #00bcd4, #6f00ff);
+            background-size: 400% 400%;
+            animation: gradientMove 15s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* General Animations */
+        .fade-in-up { animation: fadeInUp 1s ease-out forwards; opacity: 0; }
+        .fade-in-down { animation: fadeInDown 1s ease-out forwards; opacity: 0; }
+        .scale-in { animation: scaleIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; opacity: 0; }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-60px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.8); } to { opacity: 1; transform: scale(1); } }
+
+        /* Staggered animation delays */
+        .animated-delay-1 { animation-delay: 0.2s; }
+        .animated-delay-2 { animation-delay: 0.4s; }
+        .animated-delay-3 { animation-delay: 0.6s; }
+        .animated-delay-4 { animation-delay: 0.8s; }
+        .animated-delay-5 { animation-delay: 1.0s; }
+        .animated-delay-6 { animation-delay: 1.2s; }
+        .animated-delay-7 { animation-delay: 1.4s; }
+
+        /* Blockquote style */
+        blockquote {
+            background: linear-gradient(135deg, rgba(111, 0, 255, 0.08), rgba(230, 0, 126, 0.08)); /* Soft gradient background */
+            border-left: 8px solid var(--color-primary); /* Stronger border */
+            color: var(--color-text-dark); /* Darker text */
+            font-style: italic;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            margin: 4rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            line-height: 1.9;
+            font-size: 1.25rem; /* Larger font size */
+            position: relative;
+            overflow: hidden;
+        }
+        blockquote::before {
+            content: "“"; /* Large opening quote */
+            font-family: 'Playfair Display', serif;
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-size: 8rem;
+            color: rgba(111, 0, 255, 0.1); /* Faded primary color */
+            z-index: 0;
+        }
+        blockquote p {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 1rem;
+        }
+        blockquote p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Footer Signature Image Styling */
+        .footer-signature {
+            filter: grayscale(80%) sepia(20%) drop-shadow(0 10px 20px rgba(0,0,0,0.5)); /* Artistic filter */
+            transition: all 0.5s ease-in-out;
+        }
+        .footer-signature:hover {
+            filter: grayscale(0%) sepia(0%) drop-shadow(0 15px 30px rgba(0,0,0,0.7)); /* Color back on hover */
+            transform: scale(1.05);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .section-heading {
+                font-size: 2.8rem;
+                margin-bottom: 3rem;
+            }
+            .card {
+                padding: 2.5rem;
+                margin-bottom: 2.5rem;
+            }
+            .profile-img {
+                width: 180px;
+                height: 180px;
+            }
+            .gallery-img {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <header class="hero-gradient-animated text-white py-32 rounded-b-[4rem] md:rounded-b-[8rem] shadow-2xl overflow-hidden relative">
+        <div class="container flex flex-col items-center text-center">
+            <img 
+                src="https://i.imgur.com/dD0orAx.jpeg" 
+                alt="Fardin Islam Profile" 
+                class="profile-img mb-10 scale-in animated-delay-1"
+                onerror="this.onerror=null; this.src='https://placehold.co/250x250/6f00ff/ffffff?text=Profile';"
+            >
+            <h1 class="text-6xl md:text-7xl font-extrabold mb-5 leading-tight tracking-wide fade-in-down animated-delay-2" style="text-shadow: 3px 3px 10px rgba(0,0,0,0.3);" style="font-family:Segoe Script">FARDIN ISLAM</h1>
+            <p class="text-2xl md:text-3xl mb-8 font-light max-w-4xl opacity-95 fade-in-down animated-delay-3" style="font-family:Lucida Calligraphy">
+                Writer (Bangla Language & Literature) | Engineer (Computer Science) | Founder (FI Corporation)
+            </p>
+            
+            <p class="text-xl md:text-2xl max-w-4xl opacity-80 mb-10 fade-in-down animated-delay-4">
+                WELCOME! Assalamualaikum to all visitors. Hope you are fine. By the grace of Almighty Allah Subhanahu Wa Ta'ala.
+            </p>
+            <a href="#contact" class="btn-primary fade-in-up animated-delay-5">
+                Connect With Me
+            </a>
+        </div>
+    </header>
+
+    <main class="container py-20">
+
+        <section class="card fade-in-up animated-delay-1">
+            <h2 class="section-heading">My Message</h2>
+            <p class="text-lg md:text-xl mb-4 leading-relaxed">
+                Patience, single-minded desire, meticulous skill along with our intelligence and time, we are different from each other. We achieve so many honors and titles. The proper use of time does not end only at the end of student life, but from there we learn punctuality and discipline and start being punctual and disciplined. As a result, people acquire individual qualities.
+            </p>
+            <p class="text-lg md:text-xl leading-relaxed">
+                Writing a book is a very honorable job. You can get even more honor if you know how to read books. Keeping this idea in mind, I am always alert and tirelessly running day and night on the path of acquiring knowledge. There was a time when I thought that I would also write books. Without talent, a person can never earn people's love. Due to thinking about poetry and practicing it more, I started mixing my feet from a very young age. Whenever a person tries to develop his talent or wants to do something in life with it, he starts getting blocked in various ways. I am not above it either. By nurturing self-confidence, I have become a young poet today. Alhamdulillah. In the future, I will be able to contribute a lot to the Bengali language and literature. Insha Allah. I am moving forward on the path of my dreams by accepting everything.
+            </p>
+        </section>
+
+        <section class="card fade-in-up animated-delay-2">
+            <h2 class="section-heading">Introduction</h2>
+            <p class="text-lg md:text-xl leading-relaxed">
+                Fardin Islam was born around May 5, 2005, in a Muslim family belonging to the respected Mir lineage of Shibpur village, under Chitalmari Thana of Bagerhat District.
+            </p>
+            <p class="text-lg md:text-xl mt-3 leading-relaxed">
+                His father's name is Mir Biplob, and his mother's name is Aleya Begum. His father is a businessman by profession, and his mother is a skilled housewife. Notably, his grandfather’s name was Mir Fazlur Rahman.
+            </p>
+        </section>
+
+        <section class="card fade-in-up animated-delay-3">
+            <h2 class="section-heading">My Writing Journey</h2>
+            <p class="text-lg md:text-xl mb-6 leading-relaxed">
+                Since childhood, he felt a pull towards poetry and feeling love for his mother tongue, Bengali, Charan started writing slowly from the age of sixteen. He wrote his first poem titled 'Manab Jiban'. Which made him known as a poet to his friends and teachers.
+            </p>
+            <p class="text-lg md:text-xl mb-6 leading-relaxed">
+                With his Sunipur writing and touch of technology, he wants to reach the Bengali language and literature to the hearts of the mother tongue lovers and country lovers.
+            </p>
+            <p>কবিতার প্রতি কতটা ভালোবাসা থাকলে লেখা যায়-</p>
+            <blockquote>
+                <p>"হৃদয়ের প্রতিটি স্পন্দন,</p>
+                <p>যদি কবিতার চরণ হতো!</p>
+                <p>আর সমগ্র হৃদয়,</p>
+                <p>যদি কবিতা হতো!</p>
+                <p>তবে এই হৃদয়টা,</p>
+                <p>বিলিয়ে দিতাম অকাতরে।</p>
+                <p>কাব্যের তরে, কবির লেখা বানী,</p>
+                <p>'কবিতা ছেড়ে কেমনে ভালো থাকি!'</p>
+            </blockquote>
+            <p class="text-lg md:text-xl mb-6 leading-relaxed">
+                He is constantly writing, sometimes on the pages of a notebook, sometimes on the keyboard, sometimes in his beautiful handwriting.
+            </p>
+            <p>তাই হয় তো লিখেছেন-</p>
+            <blockquote>
+                <p>"কবিতা ই আমার প্রাণ,</p>
+                <p>কবিতা ই আমার মান,</p>
+                <p>কেমনে তারে ভুলে,</p>
+                <p>হই আমি কবি।"</p>
+            </blockquote>
+        </section>
+
+        <section class="card fade-in-up animated-delay-4">
+            <h2 class="section-heading">Education</h2>
+            <ul class="list-disc list-inside space-y-4 text-lg md:text-xl pl-5">
+                <li><strong>B.Sc (Engg.)</strong> in Computer Science & Engineering-Department at Daffodil International University, Birulia, Savar, Dhaka (2025-Present)</li>
+                <li>Finished <strong> HSC </strong> in Science Group from Government Science College, Tejgaon, Dhaka in 2024 with GPA: 5.00</li>
+                <li>Studied at Dhaka Bigyan College, Malibagh, Dhaka for some time in Science Group in (2022-2023).</li>
+                <li>Completed <strong>SSC </strong> in Science Group from Chitalmari Govt. S.M. Model High School, Chitalmari, Bagerhat in 2022 with GPA: 5.00</li>
+                <li>Finished <strong>PSC (Primary level)</strong> in Kindergarden School from Adarsha Shishu Bidda Niketon, Chitalmari, Bagerhat in 2016 with GPA: 5.00</li>
+            </ul>
+        </section>
+
+        <section class="card fade-in-up animated-delay-5">
+            <h2 class="section-heading">Personality & Interests</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-lg md:text-xl">
+                <div><strong class="text-purple-700">Nationality:</strong> Bangladeshi</div>
+                <div><strong class="text-purple-700">Mother Tongue:</strong> Bangla</div>
+                <div><strong class="text-purple-700">Blood Group:</strong> B+(ve)</div>
+                <div><strong class="text-purple-700">Marital Status:</strong> Single</div>
+                <div><strong class="text-purple-700">Favorite Drink:</strong> Pure Water</div>
+                <div><strong class="text-purple-700">Favorite Food:</strong> Chicken with flour bread</div>
+                <div><strong class="text-purple-700">Favorite Cloth:</strong> T-shirt & Pants</div>
+                <div><strong class="text-purple-700">Favorite Listener:</strong> My Mother</div>
+                <div><strong class="text-purple-700">Favorite Book:</strong> Al-Quran</div>
+                <div><strong class="text-purple-700">Favorite Task:</strong> Hand writing</div>
+                <div><strong class="text-purple-700">Favorite Language:</strong> Bangla, English & Arabic. Programming Language also.</div>
+                <div><strong class="text-purple-700">Fond of:</strong> Tea (Color) and Coffee (Milk & Black)</div>
+                <div><strong class="text-purple-700">Favorite Topic:</strong> Computer</div>
+                <div><strong class="text-purple-700">Favorite Leisure:</strong> Cool Sleep.</div>
+                <div><strong class="text-purple-700">Height:</strong> 5’6’’</div>
+                <div><strong class="text-purple-700">Weight:</strong> 67 kg.</div>
+                <div><strong class="text-purple-700">Eye:</strong> Blue guard power lens</div>
+                <div><strong class="text-purple-700">Extra Feature: </strong>Fingers of both hands are folded</div>
+            </div>
+        </section>
+
+        <section class="card fade-in-up animated-delay-6">
+            <h2 class="section-heading">Gallery</h2>
+            <div class="space-y-16">
+                <div>
+                    <h3 class="text-4xl font-semibold mb-8 text-center text-purple-800">He:</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                        <div class="gallery-item">
+                            <img src="https://i.imgur.com/WLlVqSX.jpeg" alt="Fardin Islam" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/6f00ff/ffffff?text=Image+1';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Iconic style</span></div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://i.imgur.com/CW5ldJF.jpeg" alt="Fardin Islam" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/6f00ff/ffffff?text=Image+2';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Thoughtful Moment</span></div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://i.imgur.com/Nno0Nhz.jpeg" alt="Fardin Islam" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/6f00ff/ffffff?text=Image+3';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Casual Pose</span></div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://i.imgur.com/l9ncs0d.jpeg" alt="Fardin Islam" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/6f00ff/ffffff?text=Image+4';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Outdoor Shot</span></div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://imgur.com/UkbwOiY.jpeg" alt="Fardin Islam" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/6f00ff/ffffff?text=Image+4';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Indoor time</span></div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://imgur.com/32IPpxi.jpeg" alt="Fardin Islam" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/6f00ff/ffffff?text=Image+4';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Free hand exercise</span></div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://i.imgur.com/YEMKwfc.jpeg" alt="Fardin Islam" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/6f00ff/ffffff?text=Image+5';">
+                            <div class="gallery-overlay"><span class="gallery-caption">College Life</span></div>
+                        </div>
+                             <div class="gallery-item">
+                            <img src="https://imgur.com/DlHe3Tz.jpeg" alt="Fardin Islam" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/6f00ff/ffffff?text=Image+5';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Prayer</span></div>
+                        </div>
+                             <div class="gallery-item">
+                            <img src="https://imgur.com/eT8a5xv.jpeg" alt="Fardin Islam" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/6f00ff/ffffff?text=Image+5';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Coffee Time</span></div>
+                        </div>
+                             <div class="gallery-item">
+                            <img src="https://imgur.com/745fq5e.jpeg" alt="Fardin Islam" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/6f00ff/ffffff?text=Image+5';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Book Fair</span></div>
+                        </div>
+                           <div class="gallery-item">
+                            <img src="https://imgur.com/qeOIwlW.jpeg" alt="Fardin Islam" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/6f00ff/ffffff?text=Image+5';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Running</span></div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://i.imgur.com/NUFSLGh.jpeg" alt="Fardin Islam" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/6f00ff/ffffff?text=Image+6';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Serene Look</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-4xl font-semibold mb-8 text-center text-purple-800">With his Cousins:</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-8">
+                        <div class="gallery-item">
+                            <img src="https://i.imgur.com/hroFmRs.jpeg" alt="Fardin Islam with Cousins" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/e6007e/ffffff?text=Cousins+1';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Cousins' Fun</span></div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://imgur.com/WwbGbzX.jpeg" alt="Fardin Islam with Cousins" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/e6007e/ffffff?text=Cousins+1';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Sweet Cousin Namira Rahman</span></div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://i.imgur.com/Z7meSXQ.jpeg" alt="Fardin Islam with Cousins" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/e6007e/ffffff?text=Cousins+2';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Family Bonds</span></div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://i.imgur.com/Sn1flVW.jpeg" alt="Fardin Islam with Cousins" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/e6007e/ffffff?text=Cousins+3';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Gathering</span></div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://i.imgur.com/WEvjlT6.jpeg" alt="Fardin Islam with Cousins" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/e6007e/ffffff?text=Cousins+4';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Happy Moments</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-4xl font-semibold mb-8 text-center text-purple-600">With his Friends:</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-10">
+                        <div class="gallery-item">
+                            <img src="https://i.imgur.com/tVxh6ug.jpeg" alt="Fardin Islam with Friends" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/00bcd4/ffffff?text=Friends+1';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Friendship Goals</span></div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://i.imgur.com/KyF5EZZ.jpeg" alt="Fardin Islam with Friends" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/00bcd4/ffffff?text=Friends+2';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Team Spirit</span></div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://i.imgur.com/7fJTMNg.jpeg" alt="Fardin Islam with Friends" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/00bcd4/ffffff?text=Friends+3';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Group Photo</span></div>
+                        </div>
+                         <div class="gallery-item">
+                            <img src="https://imgur.com/NVl6eXN.jpeg" alt="Fardin Islam with Friends" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/00bcd4/ffffff?text=Friends+3';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Group Photo</span></div>
+                        </div>
+                        </div>
+                         <div class="gallery-item">
+                            <img src="https://imgur.com/3piNK2J.jpeg" alt="Fardin Islam with Friends" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/00bcd4/ffffff?text=Friends+3';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Sotto Bondhu</span></div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://i.imgur.com/XjbH9yn.jpeg" alt="Fardin Islam with Friends" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/00bcd4/ffffff?text=Friends+4';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Classmates</span></div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://imgur.com/vNAUREh.jpeg" alt="Fardin Islam with Friends" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/00bcd4/ffffff?text=Friends+4';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Best Friend</span></div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://imgur.com/Z4taOzH.jpeg" alt="Fardin Islam with Friends" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/00bcd4/ffffff?text=Friends+5';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Good Times</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-4xl font-semibold mb-8 text-center text-purple-800">His Father:</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                        <div class="gallery-item">
+                            <img src="https://i.imgur.com/1SyYozk.jpeg" alt="Fardin Islam's Father" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/6f00ff/ffffff?text=Father';">
+                            <div class="gallery-overlay"><span class="gallery-caption">My Father</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                    <h3 class="text-4xl font-semibold mb-8 text-center text-purple-800">His Teachers:</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                        <div class="gallery-item">
+                            <img src="https://imgur.com/tKHiqhc.jpeg" alt="Fardin Islam's Teacher" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/6f00ff/ffffff?text=Teacher';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Pronoy Roy</span></div>
+                        </div>
+                         <div class="gallery-item">
+                            <img src="https://imgur.com/xr4b8SQ.jpeg" alt="Fardin Islam's Teacher" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/6f00ff/ffffff?text=Teacher';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Md. Amzad Hossain</span></div>
+                        </div>
+                         <div class="gallery-item">
+                            <img src="https://imgur.com/bwv9mUp.jpeg" alt="Fardin Islam's Teacher" class="gallery-img" onerror="this.onerror=null; this.src='https://placehold.co/320x320/6f00ff/ffffff?text=Teacher';">
+                            <div class="gallery-overlay"><span class="gallery-caption">Alamgir Kabir</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="card fade-in-up animated-delay-7">
+            <h2 class="section-heading">Connect With Me</h2>
+            <div class="flex flex-col items-center space-y-8 text-2xl md:text-3xl">
+                <p class="flex items-center">
+                    <span class="mr-5 text-red-500 text-5xl">📧</span> Mail: 
+                    <a href="mailto:fardin.cs25@gmail.com" class="social-link ml-3 font-semibold relative inline-block">
+                        fardin.cs25@gmail.com
+                        <span class="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 group-hover:w-full"></span>
+                    </a>
+                </p>
+                <div class="flex space-x-12">
+                    <a href="https://www.facebook.com/F.I.12360" target="_blank" class="social-icon" title="Facebook">
+                        <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 5.092 3.682 9.313 8.537 10.134v-7.817H7.28v-2.317h3.257V9.356c0-3.23 1.95-5.002 4.852-5.002 1.391 0 2.723.249 2.723.249v2.986h-1.503c-1.493 0-1.956.924-1.956 1.874v2.24h3.328l-.532 3.317h-2.796v7.817C18.318 21.33 22 17.092 22 12.017 22 6.484 17.523 2 12 2z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/f.i.12360/" target="_blank" class="social-icon" title="Instagram">
+                        <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.624 4.903 4.903.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.132 3.252-1.608 4.771-4.903 4.903-.058.012-1.266.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.132-4.771-1.608-4.903-4.903-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.132-3.252 1.608-4.771 4.903-4.903.058-.012 1.266-.07 4.85-.07zm0 2.163c-3.216 0-3.627.01-4.867.072-2.932.134-3.953 1.492-4.035 4.035-.062 1.24-.072 1.65-.072 4.867s.01 3.627.072 4.867c.082 2.543 1.103 3.901 4.035 4.035 1.24.062 1.65.072 4.867.072s3.627-.01 4.867-.072c2.932-.082 3.953-1.492 4.035-4.035.062-1.24.072-1.65.072-4.867s-.01-3.627-.072-4.867c-.082-2.543-1.103-3.901-4.035-4.035-1.24-.062-1.65-.072-4.867-.072zm0 4.327c-2.403 0-4.363 1.96-4.363 4.363s1.96 4.363 4.363 4.363 4.363-1.96 4.363-4.363-1.96-4.363-4.363-4.363zm0 2.163c1.196 0 2.163.967 2.163 2.163s-.967 2.163-2.163 2.163-2.163-.967-2.163-2.163.967-2.163 2.163-2.163zm6.559-4.715c-.695 0-1.26.565-1.26 1.26s.565 1.26 1.26 1.26 1.26-.565 1.26-1.26-.565-1.26-1.26-1.26z"/></svg>
+                    </a>
+                    <a href="https://x.com/FI12360" target="_blank" class="social-icon" title="X (Twitter)">
+                        <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.13l-5.214-6.817L4.937 21.75H1.62l7.73-8.835L1.254 2.25H8.08l4.714 6.237L18.244 2.25zm-2.887 18.297l-3.344-4.686-5.995-8.41H6.02L11.86 16.03l3.343 4.686h1.996z"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/fi12360" target="_blank" class="social-icon" title="LinkedIn">
+                        <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.923-2.063-2.056 0-1.133.92-2.056 2.063-2.056 1.143 0 2.064.923 2.064 2.056 0 1.133-.921 2.056-2.064 2.056zm1.787 13.019H3.55v-11.66h3.574v11.66zM22.224 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.453c.979 0 1.776-.773 1.776-1.729V1.729C24 .774 23.203 0 22.224 0z"/></svg>
+                    </a>
+                    <a href="https://www.pinterest.com/fi123600" target="_blank" class="social-icon" title="Pinterest">
+                        <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.23 2.723 7.85 6.53 9.25-.098-.85-.18-2.17-.03-2.85.14-.68 1.05-4.46 1.05-4.46s-.23-.46-.23-1.14c0-1.06.62-1.85 1.4-1.85 0.66 0 1.03.5 1.03 1.1s-.42 1.34-.64 2.1c-.19.68.36 1.25 1.04 1.25 1.25 0 2.22-1.3 2.22-3.23 0-2.6-1.87-4.4-4.52-4.4-3.08 0-4.8 2.3-4.8 4.67 0 .88.33 1.83.75 2.19.08.07.09.18.06.27l-.08.3c-.02.08-.06.1-.14.07-1.08-.43-1.75-2.07-1.75-3.32 0-2.8 2.6-5.3 6.9-5.3 3.67 0 6.13 2.67 6.13 5.06 0 3.7-2.12 6.3-5.07 6.3-.98 0-1.9-.5-2.2-1.06l-.6 2.2c-.17.6-.66 1.2-1.2 1.4-.4.15-.8.2-1.2.2-1.8 0-3.3-1.5-3.3-3.3 0-1.8 1.5-3.3 3.3-3.3s3.3 1.5 3.3 3.3c0 .1-.02.2-.03.3zm-1.03 1.7c-.12-.4-.18-.8-.18-1.2 0-1.1.5-2.1 1.3-2.1.8 0 1.3.9 1.3 2.1 0 .4-.06.8-.18 1.2l-2.27 0z"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/@F.I.12360" target="_blank" class="social-icon" title="YouTube">
+    <svg class="w-12 h-12" fill="currentColor" viewBox="0 0 576 512" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+        <path d="M549.7 124.1c-6.3-23.7-24.9-42.3-48.6-48.6C457.6 64 288 64 288 64S118.4 64 74.9 75.5C51.1 81.8 32.6 100.4 26.3 124.1 16 168.3 16 256 16 256s0 87.7 10.3 131.9c6.3 23.7 24.9 42.3 48.6 48.6C118.4 448 288 448 288 448s169.6 0 213.1-11.5c23.7-6.3 42.3-24.9 48.6-48.6C560 343.7 560 256 560 256s0-87.7-10.3-131.9zM232 334.8V177.2L352 256l-120 78.8z"/>
+    </svg>
+</a>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="card fade-in-up animated-delay-8">
+            <h2 class="section-heading">Address</h2>
+            <div class="text-lg md:text-xl text-center space-y-4">
+                <p><strong>🏠 Permanent Address:</strong> Village/Union: Shibpur, Word no: 08, Post Office: Shibpur, Post Code: 9360, Thana & Upazila: Chitalmari, District: Bagerhat, Division: Khulna</p>
+                <p><strong>🏠 Present Address:</strong> Birulia, Savar, Dhaka-1216, Dhaka, Bangladesh</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-900 text-white py-16 mt-20 rounded-t-[4rem] md:rounded-t-[8rem] shadow-inner-2xl relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-gray-950 to-gray-800 opacity-80"></div>
+        <div class="container flex flex-col items-center text-center relative z-10">
+            <img 
+                src="https://i.imgur.com/jxCtefA.jpeg" 
+                alt="Fardin Islam Signature" 
+                class="w-64 h-auto mb-8 rounded-lg footer-signature"
+                onerror="this.onerror=null; this.src='https://placehold.co/256x85/334155/ffffff?text=Signature';"
+            > 
+            <p class="text-base md:text-lg opacity-70 mb-6">Signature of FARDIN ISLAM</p>
+            <p class="text-2xl md:text-3xl mb-5 font-light tracking-wide text-gray-200">Presented by FI Corporation</p>
+            <img 
+                src="https://imgur.com/S01Znbt.jpeg" 
+                alt="FI Corporation logo" 
+                class="w-64 h-auto mb-8 rounded-lg footer-signature"
+                onerror="this.onerror=null; this.src='https://placehold.co/256x85/334155/ffffff?text=logo';"
+            > 
+            <p class="text-sm md:text-base opacity-60">&copy; 2025 Fardin Islam. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
